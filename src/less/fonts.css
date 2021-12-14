@@ -1,0 +1,27 @@
+/*
+@font-face {
+    font-family: @font;
+    src:
+        local('My Font'),
+        local('MyFont'),
+        url('../fonts/myfont.woff2') format('woff2'),
+        url('../fonts/myfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+@font-face {
+    font-family: '@{picto-font}';
+    src: url('../fonts/@{picto-font}.woff?@{hash-icomoon}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+*/
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

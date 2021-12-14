@@ -1,0 +1,182 @@
+/////// GENERAL /////
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fff;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    font-family: @font;
+    color: @fontcolor;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    .flex(column, stretch, space-between);
+
+    main {
+        flex-grow: 1;
+    }
+}
+
+.logo {
+    img {
+        max-width: 400px;
+    }
+}
+
+// TOOLS
+.txt {
+    letter-spacing: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.hide {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+a {
+    color: @color;
+    text-decoration: none;
+    .transition;
+
+    @media print {
+        text-decoration: underline;
+    }
+}
+
+strong,
+b {
+    font-weight: 700;
+}
+
+abbr {
+    border-bottom: 1px dotted #555;
+}
+
+sup {
+    vertical-align: super;
+    font-size: 0.8em;
+}
+
+.blur {
+    opacity: 0.4;
+}
+
+.wrap {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1500px;
+    position: relative;
+
+    @media @desktop-wide {
+        padding: 0 20px;
+    }
+}
+
+.main-content {
+    // gabarit principal
+} // .main-content
+
+/// LAYOUT ///
+.cols {
+    .flex(row,center,space-between);
+
+    @media @laptop {
+        .flex(column,center,center);
+    }
+
+    .col2 {
+        width: 45%;
+        min-width: 500px;
+
+        @media @mobile {
+            min-width: auto;
+        }
+
+        &.content {
+            padding: 20px;
+            @media @laptop {
+                order: -1;
+            }
+        }
+
+        &.images {
+            img {
+                max-width: 100%;
+            }
+        }
+
+        @media @laptop {
+            min-width: none;
+            width: 90%;
+        }
+    }
+
+    .col3 {
+        width: 32%;
+    }
+}
+
+.gcols {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+// HEADINGS
+.primary-title {
+    font-family: @font-title;
+    font-size: 6.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+
+    @media @mobile {
+        text-align: center;
+        font-size: 5rem;
+    }
+}
+
+// SOCIAL NETWORKS
+.social {
+    .flex(row,center,flex-start);
+
+    a {
+        font-size: 3rem;
+        margin-right: 10px;
+
+        /* stylelint-disable */
+        each(@socials, {
+            &.@{key} {
+                &:hover {
+                    color: @value;
+                }
+            }
+        });
+    }
+} // .social
+
+.color-white {
+    color: #fff;
+}
+
+.color-primary {
+    color: @color;
+}
+
+.spacing {
+    padding: 100px 20px;
+
+    @media @laptop {
+        padding: 50px 20px;
+    }
+}
