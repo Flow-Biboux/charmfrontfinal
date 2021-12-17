@@ -74,96 +74,96 @@ function Buy() {
         return provider;
     }
 
-    async function asAcc(nSol) {
+    // async function asAcc(nSol) {
 
-        const SolFeedPricePubKey = new PublicKey('AdtRGGhmqvom3Jemp5YNrxd9q9unX36BZk1pujkkXijL');
-        const provider = await getProvider();
-        const program = new Program(idl, programID, provider);
+    //     const SolFeedPricePubKey = new PublicKey('AdtRGGhmqvom3Jemp5YNrxd9q9unX36BZk1pujkkXijL');
+    //     const provider = await getProvider();
+    //     const program = new Program(idl, programID, provider);
 
-        // to change
-        const mint = new PublicKey("CchpsgFWhefV2oEqSdKdSawAudEfxvxpgJdqzb8PeAdU");  //dev
-        // const mint = new PublicKey("C4xWe67MMg5zJia7gZ8BmH2btvCfMeSMWRVWXCGvoAfG");     //main
+    //     // to change
+    //     const mint = new PublicKey("CchpsgFWhefV2oEqSdKdSawAudEfxvxpgJdqzb8PeAdU");  //dev
+    //     // const mint = new PublicKey("C4xWe67MMg5zJia7gZ8BmH2btvCfMeSMWRVWXCGvoAfG");     //main
 
-        const mintAccount = new PublicKey("H2o3JEwZiTQZbZX9SU2iAq4VoUKnytXM84wUi7y6mJXQ");
+    //     const mintAccount = new PublicKey("H2o3JEwZiTQZbZX9SU2iAq4VoUKnytXM84wUi7y6mJXQ");
 
-        const metadataMainAccount = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
-        const TOKEN_PROGRAM_ID = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
+    //     const metadataMainAccount = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
+    //     const TOKEN_PROGRAM_ID = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
 
-        const [charmpda, nonce1] = await web3.PublicKey.findProgramAddress(
-            ["charmpda"],
-            programID
-        );
-        console.log("charmpda :\n", charmpda.toBase58());
+    //     const [charmpda, nonce1] = await web3.PublicKey.findProgramAddress(
+    //         ["charmpda"],
+    //         programID
+    //     );
+    //     console.log("charmpda :\n", charmpda.toBase58());
 
-        const [fromdAddress, _nonce3] = await web3.PublicKey.findProgramAddress(
-            [
-                provider.wallet.publicKey.toBuffer(),
-                TOKEN_PROGRAM_ID.toBuffer(),
-                mint.toBuffer(),
-            ],
-            SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
-        )
-        const charmBag = new PublicKey('Ah2h9uwmryEit9uCY6upTkwAc4wjVcRBSzYdrvGDqpTy')
-        console.log("1stpart done, fromAddress : ", fromdAddress.toBase58());
-        const dataas = await provider.connection.getBalance(fromdAddress);
-        console.log("dataas :\n", dataas);
+    //     const [fromdAddress, _nonce3] = await web3.PublicKey.findProgramAddress(
+    //         [
+    //             provider.wallet.publicKey.toBuffer(),
+    //             TOKEN_PROGRAM_ID.toBuffer(),
+    //             mint.toBuffer(),
+    //         ],
+    //         SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
+    //     )
+    //     const charmBag = new PublicKey('Ah2h9uwmryEit9uCY6upTkwAc4wjVcRBSzYdrvGDqpTy')
+    //     console.log("1stpart done, fromAddress : ", fromdAddress.toBase58());
+    //     const dataas = await provider.connection.getBalance(fromdAddress);
+    //     console.log("dataas :\n", dataas);
 
 
-        if (dataas === 0) {
+    //     if (dataas === 0) {
 
-            try {
+    //         try {
 
-                await program.rpc.createAssociatedAccount({
-                    accounts: {
-                        signer: provider.wallet.publicKey,
-                        mint: mint,
-                        userAccount: fromdAddress,
-                        tokenProgram: TOKEN_PROGRAM_ID,
-                        systemProgram: SystemProgram.programId,
-                        rentProgram: SYSVAR_RENT_PUBKEY,
-                        associatedProgram: SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
-                    }
-                });
-                console.log("associated account done");
-            } catch (err) {
-                console.log("Translating error", err);
-            }
+    //             await program.rpc.createAssociatedAccount({
+    //                 accounts: {
+    //                     signer: provider.wallet.publicKey,
+    //                     mint: mint,
+    //                     userAccount: fromdAddress,
+    //                     tokenProgram: TOKEN_PROGRAM_ID,
+    //                     systemProgram: SystemProgram.programId,
+    //                     rentProgram: SYSVAR_RENT_PUBKEY,
+    //                     associatedProgram: SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
+    //                 }
+    //             });
+    //             console.log("associated account done");
+    //         } catch (err) {
+    //             console.log("Translating error", err);
+    //         }
 
-            await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
-                accounts: {
-                    signer: provider.wallet.publicKey,
-                    tokenPurse: mintAccount,
-                    mint: mint,
-                    userAccount: fromdAddress,
-                    pda: charmpda,
-                    aggregatorFeedAccount: SolFeedPricePubKey,
-                    charmAccount: charmBag,
-                    tokenProgram: TOKEN_PROGRAM_ID,
-                    systemProgram: SystemProgram.programId
-                }
-            });
-            console.log("send ", nSol, " from \n", mint.toBase58(), 'to \n', fromdAddress.toBase58());
+    //         await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
+    //             accounts: {
+    //                 signer: provider.wallet.publicKey,
+    //                 tokenPurse: mintAccount,
+    //                 mint: mint,
+    //                 userAccount: fromdAddress,
+    //                 pda: charmpda,
+    //                 aggregatorFeedAccount: SolFeedPricePubKey,
+    //                 charmAccount: charmBag,
+    //                 tokenProgram: TOKEN_PROGRAM_ID,
+    //                 systemProgram: SystemProgram.programId
+    //             }
+    //         });
+    //         console.log("send ", nSol, " from \n", mint.toBase58(), 'to \n', fromdAddress.toBase58());
 
-        } else {
-            //nsol * sol/usd *1/(usd/PSCHARM) but need to have minted Xtokens first to be working
+    //     } else {
+    //         //nsol * sol/usd *1/(usd/PSCHARM) but need to have minted Xtokens first to be working
 
-            await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
-                accounts: {
-                    signer: provider.wallet.publicKey,
-                    tokenPurse: mintAccount,
-                    mint: mint,
-                    userAccount: fromdAddress,
-                    pda: charmpda,
-                    aggregatorFeedAccount: SolFeedPricePubKey,
-                    charmAccount: charmBag,
-                    tokenProgram: TOKEN_PROGRAM_ID,
-                    systemProgram: SystemProgram.programId
-                }
-            });
+    //         await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
+    //             accounts: {
+    //                 signer: provider.wallet.publicKey,
+    //                 tokenPurse: mintAccount,
+    //                 mint: mint,
+    //                 userAccount: fromdAddress,
+    //                 pda: charmpda,
+    //                 aggregatorFeedAccount: SolFeedPricePubKey,
+    //                 charmAccount: charmBag,
+    //                 tokenProgram: TOKEN_PROGRAM_ID,
+    //                 systemProgram: SystemProgram.programId
+    //             }
+    //         });
 
-            console.log("send ", nSol, "sent from \n", mint.toBase58(), 'to \n', fromdAddress.toBase58());
-        }
-    }
+    //         console.log("send ", nSol, "sent from \n", mint.toBase58(), 'to \n', fromdAddress.toBase58());
+    //     }
+    // }
 
     const buySub = (data, event) => {
         // TODO: proper validation against value below 0 - security against bypass
