@@ -1569,10 +1569,10 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@ledgerhq/devices@^6.19.0":
-  "integrity" "sha512-xk/6JGrFP/c8aMK4O2fKZFJGH3STynwnIRy6si/400r5p3kJmoyR6h16U954EYcCbyScrVdtDYnZKLTUCbtAIQ=="
-  "resolved" "https://registry.npmjs.org/@ledgerhq/devices/-/devices-6.19.0.tgz"
-  "version" "6.19.0"
+"@ledgerhq/devices@^6.20.0":
+  "integrity" "sha512-WehM7HGdb+nSUzyUlz1t2qJ8Tg4I+rQkOJJsx0/Dpjkx6/+1hHcX6My/apPuwh39qahqwYhjszq0H1YzGDS0Yg=="
+  "resolved" "https://registry.npmjs.org/@ledgerhq/devices/-/devices-6.20.0.tgz"
+  "version" "6.20.0"
   dependencies:
     "@ledgerhq/errors" "^6.10.0"
     "@ledgerhq/logs" "^6.10.0"
@@ -1585,21 +1585,21 @@
   "version" "6.10.0"
 
 "@ledgerhq/hw-transport-webhid@^6.7.0":
-  "integrity" "sha512-CdziOFO0zAXYjRR5PTxa6L2spfYLdGlbwtfox/RQ6AUlWr8nvpZPrUvXZ3vHSHfQ3pVXxjiEoaDgpyMRuZCabA=="
-  "resolved" "https://registry.npmjs.org/@ledgerhq/hw-transport-webhid/-/hw-transport-webhid-6.19.0.tgz"
-  "version" "6.19.0"
+  "integrity" "sha512-vpbeKmvlQQHQIT7MOAt8TJV7706YkvfEsW2it/vQKAKGjmAYWgrLDXLLgmA1rEDschq0w63crOSp0El4doy+JQ=="
+  "resolved" "https://registry.npmjs.org/@ledgerhq/hw-transport-webhid/-/hw-transport-webhid-6.20.0.tgz"
+  "version" "6.20.0"
   dependencies:
-    "@ledgerhq/devices" "^6.19.0"
+    "@ledgerhq/devices" "^6.20.0"
     "@ledgerhq/errors" "^6.10.0"
-    "@ledgerhq/hw-transport" "^6.19.0"
+    "@ledgerhq/hw-transport" "^6.20.0"
     "@ledgerhq/logs" "^6.10.0"
 
-"@ledgerhq/hw-transport@^6.19.0", "@ledgerhq/hw-transport@^6.7.0":
-  "integrity" "sha512-B16iNtLb3BS+PlqKU1b6eLzOa8Os03SdeUQUYJrqc8XCqNMHJvpQxSvWVbqZFvRS5Cu991usVsCTFrPtOqaCeQ=="
-  "resolved" "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-6.19.0.tgz"
-  "version" "6.19.0"
+"@ledgerhq/hw-transport@^6.20.0", "@ledgerhq/hw-transport@^6.7.0":
+  "integrity" "sha512-5KS0Y6CbWRDOv3FgNIfk53ViQOIZqMxAw0RuOexreW5GMwuYfK7ddGi4142qcu7YrxkGo7cNe42wBbx1hdXl0Q=="
+  "resolved" "https://registry.npmjs.org/@ledgerhq/hw-transport/-/hw-transport-6.20.0.tgz"
+  "version" "6.20.0"
   dependencies:
-    "@ledgerhq/devices" "^6.19.0"
+    "@ledgerhq/devices" "^6.20.0"
     "@ledgerhq/errors" "^6.10.0"
     "events" "^3.3.0"
 
@@ -2405,7 +2405,7 @@
   dependencies:
     "buffer" "~6.0.3"
 
-"@solana/wallet-adapter-base@^0.7.0":
+"@solana/wallet-adapter-base@^0.7.0", "@solana/wallet-adapter-base@^0.7.1":
   "integrity" "sha512-NgdLrsOouBP6Cr563PjxW+4viBo1yx6q2N86LJQzwlrk8Aug48p0AgBPX+F1t9WyulDwRWVTPEALBhmggMpZIg=="
   "resolved" "https://registry.npmjs.org/@solana/wallet-adapter-base/-/wallet-adapter-base-0.7.1.tgz"
   "version" "0.7.1"
