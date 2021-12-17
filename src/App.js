@@ -1,8 +1,22 @@
-// import './App.less';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+  } from "react-router-dom";
 import React, { useEffect } from 'react'
 import './less/style.less';
 import AOS from 'aos';
 import Home from './views/Home/Home';
+import Buy from "./views/Buy/Buy";
+import { clusterApiUrl } from '@solana/web3.js';
+import { getPhantomWallet, getSolletWallet, getSlopeWallet, getLedgerWallet } from '@solana/wallet-adapter-wallets';
+import { WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+const wallets = [getPhantomWallet(), getSlopeWallet(), getSolletWallet(), getLedgerWallet()]
+const network = clusterApiUrl('devnet');
 
 
 function App() {
@@ -33,10 +47,29 @@ function App() {
 
 
   return (
-    <>
-        <Home />
-    </>
+    <Router>
+        <Switch>
+            <Route path="/" exact>                
+                <Home />
+            </Route>
+            <Route path="/buy" exact>
+                <Header />
+                <Buy />
+                <Footer />
+            </Route>
+        </Switch>
+    </Router>
   );
 }
 
-export default App;
+const AppWithProvider = () => (
+    <ConnectionProvider endpoint={network}>
+        <WalletProvider wallets={wallets}>
+            <WalletModalProvider>
+                <App />
+            </WalletModalProvider>
+        </WalletProvider>
+    </ConnectionProvider>
+)
+  
+export default AppWithProvider;
