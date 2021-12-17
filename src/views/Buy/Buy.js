@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-import idl from "../../instructions/idl.json";
+// import idl from "../../instructions/idl.json";
 import { useWallet, } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useForm } from "react-hook-form";
 import styled from "styled-components"
-import { Connection, PublicKey, clusterApiUrl, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
-import { Program, Provider, web3, BN } from "@project-serum/anchor";
+// import { Connection, PublicKey, clusterApiUrl, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
+// import { Program, Provider, web3, BN } from "@project-serum/anchor";
 
 
-const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
+// const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
 
-const { SystemProgram } = web3;
-const opts = {
-    preflightCommitment: "confirmed"
-}
-const programID = new PublicKey(idl.metadata.address);
-// const network = clusterApiUrl("mainnet-beta");
-const network = clusterApiUrl("devnet");
-const decimals = 9;
+// const { SystemProgram } = web3;
+// const opts = {
+//     preflightCommitment: "confirmed"
+// }
+// const programID = new PublicKey(idl.metadata.address);
+// // const network = clusterApiUrl("mainnet-beta");
+// const network = clusterApiUrl("devnet");
+// const decimals = 9;
 
 function Buy() {
     const [PSCHARMPrice, setPSCHARMPrice] = useState(null);
@@ -47,6 +47,7 @@ function Buy() {
     }, [])
 
     useEffect(() => {
+        console.log(nSol);
         if (nSol && nSol > 0) {
             console.log(`Buy sol (${nSol}) process launched`);
             // asAcc(nSol)
@@ -59,20 +60,20 @@ function Buy() {
         toAmount = amount * PSCHARMPrice
     } else {
         toAmount = amount
-        fromAmount = amount / PSCHARMPrice
+        fromAmount = amount / PSCHARMPrice        
     }
 
-    async function getProvider() {
-        /* create the provider and return it to the caller */
-        /* network set to local network for now */
+    // async function getProvider() {
+    //     /* create the provider and return it to the caller */
+    //     /* network set to local network for now */
 
-        const connection = new Connection(network, opts.preflightCommitment);
+    //     const connection = new Connection(network, opts.preflightCommitment);
 
-        const provider = new Provider(
-            connection, wallet, opts.preflightCommitment,
-        );
-        return provider;
-    }
+    //     const provider = new Provider(
+    //         connection, wallet, opts.preflightCommitment,
+    //     );
+    //     return provider;
+    // }
 
     // async function asAcc(nSol) {
 
@@ -360,7 +361,7 @@ const Button = styled.button`
     text-transform: uppercase;
     font-size: 18px;
     border-radius: 50px;    
-    border: 2px solid #832e2e;
+    border: 2px solid white;
     margin: 20px 0;
     width: 206px;
     height: 40px;
@@ -380,6 +381,7 @@ const Nota = styled.p`
 const BuyingForm = styled.form`
     /* background-color: rgb(75, 0, 0); */
     background-color: #4b0205;
+    background-color: #90141f;
     padding: 20px;
     display: flex;
     flex-direction: column;
