@@ -243,7 +243,7 @@ function Home() {
                     <h3 className="primary-title">CHARM’s Team</h3>
                     <div className="team-members" data-aos="fade-up" data-aos-duration="1000">
                         <div className="member">
-                            <img className="profil" src="./images/team-maxime.jpg" alt="Maxime's Photo" />
+                            <img className="profil" src="./images/team-maxime.jpg" alt="Maxime Co-CEO" />
                             <div className="description">
                                 <p className="title">
                                     Maxime Bé
@@ -256,7 +256,7 @@ function Home() {
                             </div>
                         </div>
                         <div className="member">
-                            <img className="profil" src="./images/team-jean.jpg" alt="Maxime's Photo" />
+                            <img className="profil" src="./images/team-jean.jpg" alt="Jean Co-CEO" />
                             <div className="description">
                                 <p className="title">
                                     Jean Lopez
@@ -269,7 +269,7 @@ function Home() {
                             </div>
                         </div>
                         <div className="member">
-                            <img className="profil" src="./images/team-biboux.jpg" alt="Maxime's Photo" />
+                            <img className="profil" src="./images/team-biboux.jpg" alt="Biboux CTO" />
                             <div className="description">
                                 <p className="title">
                                     Biboux
