@@ -12,7 +12,7 @@ function Header() {
     
     return (
         <header>
-            <a href="" className="logo">
+            <a href="/#home" className="logo">
                 <img src="./images/logo.png" alt="Charm's Logo" />
             </a>
             <div className="main-nav">
