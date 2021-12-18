@@ -2,8 +2,7 @@ import React from 'react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 
-function Home() {      
-    
+function Home() {
     return (
         <>
             <Header />
@@ -15,10 +14,12 @@ function Home() {
                                 CHARM <span className="color-primary">Uncensored </span>NFT Platform
                             </h1>
                             <p className="color-white">
-                                The first cryptocurrency on the Solana Blockchain that offers the option to upload explicit
-                                non-fungible tokens (NFTs) and sell and buy them through the platform.
+                                The first cryptocurrency on the Solana Blockchain that offers the option to upload
+                                explicit non-fungible tokens (NFTs) and sell and buy them through the platform.
                             </p>
-                            <a href="#about-us" className="special-link">Learn more About Us</a>
+                            <a href="#about-us" className="special-link">
+                                Learn more About Us
+                            </a>
                         </div>
                         <div className="images col2">
                             <img
@@ -39,10 +40,18 @@ function Home() {
                 <section className="about-us spacing" id="about-us">
                     <div className="wrap cols">
                         <div className="col2 images" data-aos="fade-right" data-aos-duration="2000">
-                            <img src="./images/fake-video.jpg" alt="Fake video" />
+                            <iframe
+                                src="https://www.youtube.com/embed/_cNVaGo_b8E"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
                         </div>
                         <div className="col2 content">
-                            <h2 className="primary-title" data-aos="fade-left" data-aos-duration="1500">About Us</h2>
+                            <h2 className="primary-title" data-aos="fade-left" data-aos-duration="1500">
+                                About Us
+                            </h2>
                             <p data-aos="fade-left" data-aos-duration="2000">
                                 Charm is a unique content sharing platform powered by Solana blockchain providing full
                                 anonymity and true ownership to all our users.
@@ -70,21 +79,21 @@ function Home() {
                                 <span className="number">02</span>
                                 <p className="title">Exclusive unlockable content</p>
                                 <p className="description">
-                                    All content creators will be able to offer their fans exclusive scenes encapsulated in a
-                                    NFT-type token whose exclusive access will be won by the purchaser that places the
-                                    highest bet.
+                                    All content creators will be able to offer their fans exclusive scenes encapsulated
+                                    in a NFT-type token whose exclusive access will be won by the purchaser that places
+                                    the highest bet.
                                 </p>
                             </div>
                         </div>
                         <div className="why-different">
                             <p className="title">Why CHARM is different ?</p>
                             <p>
-                                Charm is highly interactive, explicit content sharing social media platform where content
-                                creators can monetize their influence.
+                                Charm is highly interactive, explicit content sharing social media platform where
+                                content creators can monetize their influence.
                             </p>
                             <p>
-                                There is a Home page where users can view their feed – a stream of content shared by those
-                                you follow, including your close friends.
+                                There is a Home page where users can view their feed – a stream of content shared by
+                                those you follow, including your close friends.
                             </p>
                             <p>
                                 There will also be suggestions for more people to follow and a search bar to find more
@@ -104,8 +113,8 @@ function Home() {
                             <p className="title">Exclusive unlockable content</p>
                             <p className="description">
                                 All content creators will be able to offer their fans exclusive scenes encapsulated in a
-                                NFT-type token whose exclusive access will be won by the purchaser that places the highest
-                                bet.
+                                NFT-type token whose exclusive access will be won by the purchaser that places the
+                                highest bet.
                             </p>
                         </div>
                         <div className="element">
@@ -120,48 +129,56 @@ function Home() {
                             <span className="number">04</span>
                             <p className="title">Live</p>
                             <p className="description">
-                                CThis feature is currently in the development phase. Creators will be able to set up live
-                                webcam shows by which they will receive tips and messages in USDT introducing new ways of
-                                streaming.
+                                CThis feature is currently in the development phase. Creators will be able to set up
+                                live webcam shows by which they will receive tips and messages in USDT introducing new
+                                ways of streaming.
                             </p>
                         </div>
                         <div className="element">
                             <span className="number">05</span>
                             <p className="title">Fan Section</p>
                             <p className="description">
-                                With the help of our platform, we will be offering the chance to interact between users and
-                                content creators so that content creators can increase their efficiency by knowing what most
-                                of their users like.
+                                With the help of our platform, we will be offering the chance to interact between users
+                                and content creators so that content creators can increase their efficiency by knowing
+                                what most of their users like.
                             </p>
                         </div>
                         <div className="element">
                             <span className="number">06</span>
                             <p className="title">Privacy-focused chatting application</p>
                             <p className="description">
-                                This feature is facilitated by public key cryptography technology, which will secure both
-                                chats by the end-to-end encryption, while providing end-to- end encryption for file sharing.
-                                And finally, by means of an inbuilt wallet, it will also allow you to send or receive
-                                payments in crypto.
+                                This feature is facilitated by public key cryptography technology, which will secure
+                                both chats by the end-to-end encryption, while providing end-to- end encryption for file
+                                sharing. And finally, by means of an inbuilt wallet, it will also allow you to send or
+                                receive payments in crypto.
                             </p>
                         </div>
                     </div>
                 </section>
                 <section className="sales spacing" id="sales">
-                    <h2 className="primary-title" data-aos="fade-left" data-aos-duration="1500">Sales Progress</h2>
+                    <h2 className="primary-title" data-aos="fade-left" data-aos-duration="1500">
+                        Sales Progress
+                    </h2>
 
                     <div className="cols">
                         <div className="percent-container">
                             <div className="percent" data-aos="fade-right" data-aos-duration="1500">
                                 <div className="content">
-                                    <p className="title">Presale <span>100%</span></p>
-                                    <span className="bar"><span className="progress"></span></span>
+                                    <p className="title">
+                                        Presale <span>100%</span>
+                                    </p>
+                                    <span className="bar">
+                                        <span className="progress"></span>
+                                    </span>
                                     <p>1% of total supply available capped to 2.5 SOL per wallet</p>
                                 </div>
                                 <p className="price">$0.0018</p>
                             </div>
                             <div className="percent" data-aos="fade-right" data-aos-duration="1500">
                                 <div className="content">
-                                    <p className="title">Private <span>SOON</span></p>
+                                    <p className="title">
+                                        Private <span>SOON</span>
+                                    </p>
                                     <span className="bar"></span>
                                     <p>5% of total supply available capped to 37.5 SOL per wallet</p>
                                 </div>
@@ -169,7 +186,9 @@ function Home() {
                             </div>
                             <div className="percent" data-aos="fade-right" data-aos-duration="1500">
                                 <div className="content">
-                                    <p className="title">Public <span>SOON</span></p>
+                                    <p className="title">
+                                        Public <span>SOON</span>
+                                    </p>
                                     <span className="bar"></span>
                                     <p>10% of total supply available with no cap per wallet</p>
                                 </div>
@@ -178,25 +197,34 @@ function Home() {
                         </div>
                         <div className="details" data-aos="fade-left" data-aos-duration="1500">
                             <p>
-                                Charm will be used as a governance token, meaning each transaction on Charm NFT marketplace
-                                will be deducted of 15% to reward the Holders, Affiliate and Development in USDT.
+                                Charm will be used as a governance token, meaning each transaction on Charm NFT
+                                marketplace will be deducted of 15% to reward the Holders, Affiliate and Development in
+                                USDT.
                             </p>
-                            <a href="/documents/Charm_White_Paper_PDF.pdf" className="btn btn-primary">Whitepaper</a>
+                            <a href="/documents/Charm_White_Paper_PDF.pdf" className="btn btn-primary">
+                                Whitepaper
+                            </a>
                         </div>
                     </div>
                 </section>
                 <section className="buy wrap spacing" id="buy">
-                    <h3 className="primary-title" data-aos="fade-up" data-aos-duration="1000">Be a part of CHARM</h3>
+                    <h3 className="primary-title" data-aos="fade-up" data-aos-duration="1000">
+                        Be a part of CHARM
+                    </h3>
                     <p data-aos="fade-up" data-aos-duration="1000">
                         Invest and buy CHARM token and be a part of CHARM Ecosystem
                     </p>
-                    <a href="/buy" data-aos="fade-up" data-aos-duration="1000" className="btn btn-primary">Buy CHARM</a>
+                    <a href="/buy" data-aos="fade-up" data-aos-duration="1000" className="btn btn-primary">
+                        Buy CHARM
+                    </a>
                 </section>
                 <section className="roadmap spacing color-white" id="roadmap">
                     <h2 className="primary-title">Our Roadmap</h2>
                     <div className="roadmap-container">
                         <div className="quarter">
-                            <p className="title"><span>Q3</span> 2021</p>
+                            <p className="title">
+                                <span>Q3</span> 2021
+                            </p>
                             <ul data-aos="fade-right" data-aos-duration="2000">
                                 <li className="check">
                                     Conceptualization Charm Token Social Media Launch (Telegram, Discord, Instagram,
@@ -208,9 +236,13 @@ function Home() {
                             </ul>
                         </div>
                         <div className="quarter">
-                            <p className="title"><span>Q4</span> 2021</p>
+                            <p className="title">
+                                <span>Q4</span> 2021
+                            </p>
                             <ul data-aos="fade-left">
-                                <li className="check">Website Launch V1 Hackathon Solana CHARM App V2 (Devnet)features :</li>
+                                <li className="check">
+                                    Website Launch V1 Hackathon Solana CHARM App V2 (Devnet)features :
+                                </li>
                                 <li className="check">NFT Bomb (like feature)</li>
                                 <li>Email Login and transaction sign</li>
                                 <li>User and Creator subscription</li>
@@ -220,7 +252,9 @@ function Home() {
                             </ul>
                         </div>
                         <div className="quarter">
-                            <p className="title"><span>Q1</span> 2022</p>
+                            <p className="title">
+                                <span>Q1</span> 2022
+                            </p>
                             <ul data-aos="fade-right">
                                 <li>CHARM App V3 (Closed Beta)features :</li>
                                 <li>Chat (private message)</li>
@@ -230,7 +264,9 @@ function Home() {
                             </ul>
                         </div>
                         <div className="quarter">
-                            <p className="title"><span>Q2</span> 2022</p>
+                            <p className="title">
+                                <span>Q2</span> 2022
+                            </p>
                             <ul data-aos="fade-left">
                                 <li>Centralized Exchange listing</li>
                                 <li>Website V3 updates</li>
@@ -250,7 +286,9 @@ function Home() {
                                     <span>Founders / Co-CEO</span>
                                 </p>
                                 <nav className="socials">
-                                    <a href="https://www.linkedin.com/in/maxime-b%C3%A9-b71259170/"><img src="./images/linkedin.svg" alt="Linkedin Logo" /></a>                                    
+                                    <a href="https://www.linkedin.com/in/maxime-b%C3%A9-b71259170/">
+                                        <img src="./images/linkedin.svg" alt="Linkedin Logo" />
+                                    </a>
                                     {/* <a href=""><img src="./images/twitter.svg" alt="Twitter Logo" /></a> */}
                                 </nav>
                             </div>
@@ -263,7 +301,9 @@ function Home() {
                                     <span>Founders / Co-CEO</span>
                                 </p>
                                 <nav className="socials">
-                                    <a href="https://www.linkedin.com/in/jean-lopez-6137b5125"><img src="./images/linkedin.svg" alt="Linkedin Logo" /></a>                                    
+                                    <a href="https://www.linkedin.com/in/jean-lopez-6137b5125">
+                                        <img src="./images/linkedin.svg" alt="Linkedin Logo" />
+                                    </a>
                                     {/* <a href=""><img src="./images/twitter.svg" alt="Twitter Logo" /></a> */}
                                 </nav>
                             </div>
@@ -276,7 +316,9 @@ function Home() {
                                     <span>CTO</span>
                                 </p>
                                 <nav className="socials">
-                                    <a href="https://www.linkedin.com/in/florian-esmail/"><img src="./images/linkedin.svg" alt="Linkedin Logo" /></a>                                    
+                                    <a href="https://www.linkedin.com/in/florian-esmail/">
+                                        <img src="./images/linkedin.svg" alt="Linkedin Logo" />
+                                    </a>
                                     {/* <a href="https://www.facebook.com/BibouxEsmail"><img src="./images/facebook.svg" alt="Facebook Logo" /></a>                                     */}
                                     {/* <a href=""><img src="./images/twitter.svg" alt="Twitter Logo" /></a> */}
                                 </nav>
