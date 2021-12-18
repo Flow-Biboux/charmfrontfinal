@@ -276,8 +276,8 @@ function Home() {
                                     <span>CTO</span>
                                 </p>
                                 <nav className="socials">
-                                    {/* <a href=""><img src="./images/linkedin.svg" alt="Linkedin Logo" /></a>                                     */}
-                                    <a href="https://www.facebook.com/BibouxEsmail"><img src="./images/facebook.svg" alt="Facebook Logo" /></a>                                    
+                                    <a href="https://www.linkedin.com/in/florian-esmail/"><img src="./images/linkedin.svg" alt="Linkedin Logo" /></a>                                    
+                                    {/* <a href="https://www.facebook.com/BibouxEsmail"><img src="./images/facebook.svg" alt="Facebook Logo" /></a>                                     */}
                                     {/* <a href=""><img src="./images/twitter.svg" alt="Twitter Logo" /></a> */}
                                 </nav>
                             </div>
