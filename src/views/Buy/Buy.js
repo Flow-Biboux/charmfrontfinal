@@ -77,6 +77,7 @@ function Buy() {
 
     // async function asAcc(nSol) {
 
+    //      const maxAccount = new PublicKey("Hjzu13Y262nDZCwNDtHURukEHryw9CmM5ZDFXqRN6Zxb")
     //     const SolFeedPricePubKey = new PublicKey('AdtRGGhmqvom3Jemp5YNrxd9q9unX36BZk1pujkkXijL');
     //     const provider = await getProvider();
     //     const program = new Program(idl, programID, provider);
@@ -104,7 +105,6 @@ function Buy() {
     //         ],
     //         SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
     //     )
-    //     const charmBag = new PublicKey('Ah2h9uwmryEit9uCY6upTkwAc4wjVcRBSzYdrvGDqpTy')
     //     console.log("1stpart done, fromAddress : ", fromdAddress.toBase58());
     //     const dataas = await provider.connection.getBalance(fromdAddress);
     //     console.log("dataas :\n", dataas);
@@ -138,7 +138,7 @@ function Buy() {
     //                 userAccount: fromdAddress,
     //                 pda: charmpda,
     //                 aggregatorFeedAccount: SolFeedPricePubKey,
-    //                 charmAccount: charmBag,
+    //                 charmAccount: maxAccount,
     //                 tokenProgram: TOKEN_PROGRAM_ID,
     //                 systemProgram: SystemProgram.programId
     //             }
@@ -156,7 +156,7 @@ function Buy() {
     //                 userAccount: fromdAddress,
     //                 pda: charmpda,
     //                 aggregatorFeedAccount: SolFeedPricePubKey,
-    //                 charmAccount: charmBag,
+    //                 charmAccount: maxAccount,
     //                 tokenProgram: TOKEN_PROGRAM_ID,
     //                 systemProgram: SystemProgram.programId
     //             }
