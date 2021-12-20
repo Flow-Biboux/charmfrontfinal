@@ -129,7 +129,7 @@ function Home() {
                             <span className="number">04</span>
                             <p className="title">Live</p>
                             <p className="description">
-                                CThis feature is currently in the development phase. Creators will be able to set up
+                                This feature is currently in the development phase. Creators will be able to set up
                                 live webcam shows by which they will receive tips and messages in USDT introducing new
                                 ways of streaming.
                             </p>
@@ -148,7 +148,7 @@ function Home() {
                             <p className="title">Privacy-focused chatting application</p>
                             <p className="description">
                                 This feature is facilitated by public key cryptography technology, which will secure
-                                both chats by the end-to-end encryption, while providing end-to- end encryption for file
+                                both chats by the end-to-end encryption, while providing end-to-end encryption for file
                                 sharing. And finally, by means of an inbuilt wallet, it will also allow you to send or
                                 receive payments in crypto.
                             </p>
