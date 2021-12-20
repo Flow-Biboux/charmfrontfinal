@@ -26,8 +26,9 @@ function Footer() {
                         <a href="/#sales">Sales</a>
                         <a href="/#roadmap">Roadmap</a>
                         <a href="/#team">Teams</a>
-                        <a href="/documents/Charm_White_Paper_PDF.pdf" className="btn btn-primary">Whitepaper</a>
-                        <a href="/#home" className="btn btn-secondary">CHARM App</a>
+                        <a href="/buy" className="btn btn-primary">Buy CHARM</a>
+                        <a href="/documents/Charm_White_Paper_PDF.pdf" className="btn btn-secondary">Whitepaper</a>
+                        {/* <a href="/#home" className="btn btn-secondary">CHARM App</a> */}
                     </nav>
                 </div>
             </footer>
