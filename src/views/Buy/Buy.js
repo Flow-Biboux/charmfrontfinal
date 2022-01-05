@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-// import idl from "../../instructions/idl.json";
+import idl from "../../instructions/idl.json";
 import { useWallet, } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useForm } from "react-hook-form";
 import styled from "styled-components"
-// import { Connection, PublicKey, clusterApiUrl, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
-// import { Program, Provider, web3, BN } from "@project-serum/anchor";
+import { Connection, PublicKey, clusterApiUrl, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
+import { Program, Provider, web3, BN } from "@project-serum/anchor";
 
 
-// const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
+const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
 
-// const { SystemProgram } = web3;
-// const opts = {
-//     preflightCommitment: "confirmed"
-// }
-// const programID = new PublicKey(idl.metadata.address);
-// // const network = clusterApiUrl("mainnet-beta");
+const { SystemProgram } = web3;
+const opts = {
+    preflightCommitment: "confirmed"
+}
+const programID = new PublicKey(idl.metadata.address);
+const network = clusterApiUrl("mainnet-beta");
 // const network = clusterApiUrl("devnet");
-// const decimals = 9;
+const decimals = 9;
 
 function Buy() {
     const [PSCHARMPrice, setPSCHARMPrice] = useState(null);
@@ -25,7 +25,7 @@ function Buy() {
     const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
     const [nSol, setNSol] = useState(null);
 
-    const wallet = useWallet();  
+    const wallet = useWallet();
 
     const { register, handleSubmit } = useForm({
         mode: 'onSubmit',
@@ -47,12 +47,104 @@ function Buy() {
     }, [])
 
     useEffect(() => {
-        console.log(nSol);
-        if (nSol && nSol > 0) {
-            console.log(`Buy sol (${nSol}) process launched`);
-            // asAcc(nSol)
+        // console.log(nSol);
+
+        async function getProvider() {
+            /* create the provider and return it to the caller */
+            /* network set to local network for now */
+    
+            const connection = new Connection(network, opts.preflightCommitment);
+    
+            const provider = new Provider(
+                connection, wallet, opts.preflightCommitment,
+            );
+            return provider;
         }
-    }, [nSol])
+
+        async function asAcc(nSol) {
+            // console.log("number of SOL: " + nSol)
+    
+            const maxAccount = new PublicKey("Hjzu13Y262nDZCwNDtHURukEHryw9CmM5ZDFXqRN6Zxb")
+            const SolFeedPricePubKey = new PublicKey('AdtRGGhmqvom3Jemp5YNrxd9q9unX36BZk1pujkkXijL');
+            const provider = await getProvider();
+            const program = new Program(idl, programID, provider);
+            const tokenPurse = new PublicKey("HddDcpTXPrgYMfsErA9jHefMgUvoGaHxvjL1qVU6QYcs");
+    
+            // to change in PROD
+            // const mint = new PublicKey("CchpsgFWhefV2oEqSdKdSawAudEfxvxpgJdqzb8PeAdU");  //dev
+            const mint = new PublicKey("C4xWe67MMg5zJia7gZ8BmH2btvCfMeSMWRVWXCGvoAfG");     //main
+    
+            // const mintAccount = new PublicKey("H2o3JEwZiTQZbZX9SU2iAq4VoUKnytXM84wUi7y6mJXQ");
+            
+            const TOKEN_PROGRAM_ID = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
+    
+            const [charmpda, nonce1] = await web3.PublicKey.findProgramAddress(
+                ["charmpda"],
+                programID
+            );
+            // console.log("charmpda :\n", charmpda.toBase58());
+    
+            const [fromdAddress] = await web3.PublicKey.findProgramAddress(
+                [
+                    provider.wallet.publicKey.toBuffer(),
+                    TOKEN_PROGRAM_ID.toBuffer(),
+                    mint.toBuffer(),
+                ],
+                SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
+            )
+            // console.log("1stpart done, fromAddress : ", fromdAddress.toBase58());
+            const dataas = await provider.connection.getBalance(fromdAddress);
+            // console.log("dataas :\n", dataas);
+    
+    
+            if (dataas === 0) {
+    
+                try {
+    
+                    await program.rpc.createAssociatedAccount({
+                        accounts: {
+                            signer: provider.wallet.publicKey,
+                            mint: mint,
+                            userAccount: fromdAddress,
+                            tokenProgram: TOKEN_PROGRAM_ID,
+                            systemProgram: SystemProgram.programId,
+                            rentProgram: SYSVAR_RENT_PUBKEY,
+                            associatedProgram: SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
+                        }
+                    });
+                    // console.log("associated account done");
+                } catch (err) {
+                    console.log("Translating error", err);
+                }
+    
+            }         
+            //nsol * sol/usd *1/(usd/PSCHARM) but need to have minted Xtokens first to be working
+    
+            await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
+                accounts: {
+                    signer: provider.wallet.publicKey,
+                    tokenPurse: tokenPurse,
+                    mint: mint,
+                    userAccount: fromdAddress,
+                    pda: charmpda,
+                    aggregatorFeedAccount: SolFeedPricePubKey,
+                    charmAccount: maxAccount,
+                    tokenProgram: TOKEN_PROGRAM_ID,
+                    systemProgram: SystemProgram.programId
+                }
+            });
+    
+            // console.log("send ", nSol, "sent from \n", mint.toBase58(), 'to \n', fromdAddress.toBase58());
+            alert("Transfer is successfull, this is your account: \n", fromdAddress.toBase58(), "\n you can find it on the explorer!");
+            
+        }
+
+
+        if (nSol && nSol > 0) {
+            // console.log(`Buy sol (${nSol}) process launched`);
+            asAcc(nSol)
+        }
+    }, [nSol, wallet])
 
     let toAmount, fromAmount;
     if (amountInFromCurrency) {
@@ -61,119 +153,16 @@ function Buy() {
     } else {
         toAmount = amount
         fromAmount = amount / PSCHARMPrice        
-    }
-
-    // async function getProvider() {
-    //     /* create the provider and return it to the caller */
-    //     /* network set to local network for now */
-
-    //     const connection = new Connection(network, opts.preflightCommitment);
-
-    //     const provider = new Provider(
-    //         connection, wallet, opts.preflightCommitment,
-    //     );
-    //     return provider;
-    // }
-
-    // async function asAcc(nSol) {
-
-    //      const maxAccount = new PublicKey("Hjzu13Y262nDZCwNDtHURukEHryw9CmM5ZDFXqRN6Zxb")
-    //     const SolFeedPricePubKey = new PublicKey('AdtRGGhmqvom3Jemp5YNrxd9q9unX36BZk1pujkkXijL');
-    //     const provider = await getProvider();
-    //     const program = new Program(idl, programID, provider);
-
-    //     // to change
-    //     const mint = new PublicKey("CchpsgFWhefV2oEqSdKdSawAudEfxvxpgJdqzb8PeAdU");  //dev
-    //     // const mint = new PublicKey("C4xWe67MMg5zJia7gZ8BmH2btvCfMeSMWRVWXCGvoAfG");     //main
-
-    //     const mintAccount = new PublicKey("H2o3JEwZiTQZbZX9SU2iAq4VoUKnytXM84wUi7y6mJXQ");
-
-    //     const metadataMainAccount = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
-    //     const TOKEN_PROGRAM_ID = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
-
-    //     const [charmpda, nonce1] = await web3.PublicKey.findProgramAddress(
-    //         ["charmpda"],
-    //         programID
-    //     );
-    //     console.log("charmpda :\n", charmpda.toBase58());
-
-    //     const [fromdAddress, _nonce3] = await web3.PublicKey.findProgramAddress(
-    //         [
-    //             provider.wallet.publicKey.toBuffer(),
-    //             TOKEN_PROGRAM_ID.toBuffer(),
-    //             mint.toBuffer(),
-    //         ],
-    //         SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
-    //     )
-    //     console.log("1stpart done, fromAddress : ", fromdAddress.toBase58());
-    //     const dataas = await provider.connection.getBalance(fromdAddress);
-    //     console.log("dataas :\n", dataas);
-
-
-    //     if (dataas === 0) {
-
-    //         try {
-
-    //             await program.rpc.createAssociatedAccount({
-    //                 accounts: {
-    //                     signer: provider.wallet.publicKey,
-    //                     mint: mint,
-    //                     userAccount: fromdAddress,
-    //                     tokenProgram: TOKEN_PROGRAM_ID,
-    //                     systemProgram: SystemProgram.programId,
-    //                     rentProgram: SYSVAR_RENT_PUBKEY,
-    //                     associatedProgram: SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
-    //                 }
-    //             });
-    //             console.log("associated account done");
-    //         } catch (err) {
-    //             console.log("Translating error", err);
-    //         }
-
-    //         await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
-    //             accounts: {
-    //                 signer: provider.wallet.publicKey,
-    //                 tokenPurse: mintAccount,
-    //                 mint: mint,
-    //                 userAccount: fromdAddress,
-    //                 pda: charmpda,
-    //                 aggregatorFeedAccount: SolFeedPricePubKey,
-    //                 charmAccount: maxAccount,
-    //                 tokenProgram: TOKEN_PROGRAM_ID,
-    //                 systemProgram: SystemProgram.programId
-    //             }
-    //         });
-    //         console.log("send ", nSol, " from \n", mint.toBase58(), 'to \n', fromdAddress.toBase58());
-
-    //     } else {
-    //         //nsol * sol/usd *1/(usd/PSCHARM) but need to have minted Xtokens first to be working
-
-    //         await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
-    //             accounts: {
-    //                 signer: provider.wallet.publicKey,
-    //                 tokenPurse: mintAccount,
-    //                 mint: mint,
-    //                 userAccount: fromdAddress,
-    //                 pda: charmpda,
-    //                 aggregatorFeedAccount: SolFeedPricePubKey,
-    //                 charmAccount: maxAccount,
-    //                 tokenProgram: TOKEN_PROGRAM_ID,
-    //                 systemProgram: SystemProgram.programId
-    //             }
-    //         });
-
-    //         console.log("send ", nSol, "sent from \n", mint.toBase58(), 'to \n', fromdAddress.toBase58());
-    //     }
-    // }
+    }    
 
     const buySub = (data, event) => {
         // TODO: proper validation against value below 0 - security against bypass
-        if (data.nSol < 0)
-        console.log("value below 0 are prohibited");
+        // if (data.nSol < 0)
+        //     console.log("value below 0 are prohibited");
         
         setNSol(data.nSol)
-        console.log(data.nSol);
-        console.log(nSol);
+        // console.log(data.nSol);
+        // console.log(nSol);
         event.preventDefault();
     }
 
@@ -243,9 +232,9 @@ function Buy() {
                     <BuyingForm onSubmit={handleSubmit(buySub)}>
                         <div className="input-container">
                             <label htmlFor="sol">
-                                <img src="https://s2.coinmarketcap.com/static/img/coins/200x200/5426.png" alt="" />
-                                Solana</label
-                            >
+                                <LogoSolana src="https://s2.coinmarketcap.com/static/img/coins/200x200/5426.png" alt="Solana logo" />
+                                Solana
+                            </label>
                             <input
                                 className="input"
                                 name="sol"
@@ -487,4 +476,8 @@ const SelectWalletWrapper = styled.div`
 `
 const SelectWalletLegend = styled.p`
     margin-bottom: 30px;
+`
+
+const LogoSolana = styled.img`
+    border-radius: 50%;
 `
