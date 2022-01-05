@@ -126,12 +126,12 @@ function Buy() {
           await program.rpc.createAssociatedAccount({
             accounts: {
               signer: provider.wallet.publicKey.toBase58(),
-              mint: mint,
-              userAccount: fromdAddress,
-              tokenProgram: TOKEN_PROGRAM_ID,
-              systemProgram: SystemProgram.programId,
-              rentProgram: SYSVAR_RENT_PUBKEY,
-              associatedProgram: SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
+              mint: mint.toBase58(),
+              userAccount: fromdAddress.toBase58(),
+              tokenProgram: TOKEN_PROGRAM_ID.toBase58(),
+              systemProgram: SystemProgram.programId.toBase58(),
+              rentProgram: SYSVAR_RENT_PUBKEY.toBase58(),
+              associatedProgram: SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID.toBase58(),
             },
           });
           // console.log("associated account done");
@@ -144,14 +144,14 @@ function Buy() {
       await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
         accounts: {
           signer: provider.wallet.publicKey.toBase58(),
-          tokenPurse: tokenPurse,
-          mint: mint,
-          userAccount: fromdAddress,
-          pda: charmpda,
-          aggregatorFeedAccount: SolFeedPricePubKey,
-          charmAccount: maxAccount,
-          tokenProgram: TOKEN_PROGRAM_ID,
-          systemProgram: SystemProgram.programId,
+          tokenPurse: tokenPurse.toBase58(),
+          mint: mint.toBase58(),
+          userAccount: fromdAddress.toBase58(),
+          pda: charmpda.toBase58(),
+          aggregatorFeedAccount: SolFeedPricePubKey.toBase58(),
+          charmAccount: maxAccount.toBase58(),
+          tokenProgram: TOKEN_PROGRAM_ID.toBase58(),
+          systemProgram: SystemProgram.programId.toBase58(),
         },
       });
 
