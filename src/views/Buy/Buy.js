@@ -84,7 +84,7 @@ function Buy() {
       );
       const provider = await getProvider();
       console.log("idl", idl);
-      console.log("programID", programID);
+      console.log("programID", programID.toBase58());
       console.log("provider", provider);
       const program = new Program(idl, programID.toBase58(), provider);
       const tokenPurse = new PublicKey(
@@ -125,7 +125,7 @@ function Buy() {
         try {
           await program.rpc.createAssociatedAccount({
             accounts: {
-              signer: provider.wallet.publicKey,
+              signer: provider.wallet.publicKey.toBase58(),
               mint: mint,
               userAccount: fromdAddress,
               tokenProgram: TOKEN_PROGRAM_ID,
