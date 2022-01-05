@@ -1,6 +1,7 @@
 import React from 'react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
+import styled from "styled-components"
 
 function Home() {
     return (
@@ -167,7 +168,7 @@ function Home() {
                                     <p className="title">
                                         Presale <span>100%</span>
                                     </p>
-                                    <span className="bar">
+                                    <span className="bar complete">
                                         <span className="progress"></span>
                                     </span>
                                     <p>1% of total supply available capped to 2.5 SOL per wallet</p>
@@ -177,9 +178,10 @@ function Home() {
                             <div className="percent" data-aos="fade-right" data-aos-duration="1500">
                                 <div className="content">
                                     <p className="title">
-                                        Private <span>SOON</span>
+                                        Private sale: <span>OPEN</span> 2% 
+                                        <a href="/buy" className="btn btn-primary buy-now">Buy Now</a>
                                     </p>
-                                    <span className="bar"></span>
+                                    <PrivateSaleBar className="bar"></PrivateSaleBar>
                                     <p>5% of total supply available capped to 37.5 SOL per wallet</p>
                                 </div>
                                 <p className="price">$0.005</p>
@@ -323,6 +325,33 @@ function Home() {
                                     {/* <a href=""><img src="./images/twitter.svg" alt="Twitter Logo" /></a> */}
                                 </nav>
                             </div>
+                        </div>                        
+                        <div className="member">
+                            <img className="profil" src="./images/member.png" alt="Gourav" />
+                            <div className="description">
+                                <p className="title">
+                                    Gourav
+                                    <span>Blockchain Dev</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="member">
+                            <img className="profil" src="./images/member.png" alt="Sofian" />
+                            <div className="description">
+                                <p className="title">
+                                    Sofian
+                                    <span>Front-End Dev</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="member">
+                            <img className="profil" src="./images/member.png" alt="Julien" />
+                            <div className="description">
+                                <p className="title">
+                                    Julien
+                                    <span>Front-End Dev</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -333,3 +362,24 @@ function Home() {
 }
 
 export default Home
+
+const PrivateSaleBar = styled.span`
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2%;
+        height: 4px;
+        margin-bottom: 10px;
+        background-color: #90141f;
+
+        @media screen and (max-width: 639px) {
+            height: 6px;
+            margin-bottom: 20px;
+        }
+    }
+`
