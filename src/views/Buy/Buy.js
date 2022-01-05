@@ -143,7 +143,7 @@ function Buy() {
 
       await program.rpc.buyCharm(nonce1, new BN(nSol * 10 ** decimals), {
         accounts: {
-          signer: provider.wallet.publicKey,
+          signer: provider.wallet.publicKey.toBase58(),
           tokenPurse: tokenPurse,
           mint: mint,
           userAccount: fromdAddress,
