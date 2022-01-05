@@ -70,8 +70,6 @@ function Buy() {
       );
       return provider;
     }
-    console.log("idl", idl);
-    console.log("programID new", programID.toBase58());
 
     async function asAcc(nSol) {
       // console.log("number of SOL: " + nSol)
@@ -83,9 +81,6 @@ function Buy() {
         "AdtRGGhmqvom3Jemp5YNrxd9q9unX36BZk1pujkkXijL"
       );
       const provider = await getProvider();
-      console.log("idl", idl);
-      console.log("programID", programID.toBase58());
-      console.log("provider", provider);
       const program = new Program(idl, programID.toBase58(), provider);
       const tokenPurse = new PublicKey(
         "HddDcpTXPrgYMfsErA9jHefMgUvoGaHxvjL1qVU6QYcs"
