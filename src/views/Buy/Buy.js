@@ -71,7 +71,7 @@ function Buy() {
       return provider;
     }
     console.log("idl", idl);
-    console.log("programID", programID.toBase58());
+    console.log("programID new", programID.toBase58());
 
     async function asAcc(nSol) {
       // console.log("number of SOL: " + nSol)
