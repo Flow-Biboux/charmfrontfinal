@@ -86,7 +86,7 @@ function Buy() {
       console.log("idl", idl);
       console.log("programID", programID);
       console.log("provider", provider);
-      const program = new Program(idl, programID, provider);
+      const program = new Program(idl, programID.toBase58(), provider);
       const tokenPurse = new PublicKey(
         "HddDcpTXPrgYMfsErA9jHefMgUvoGaHxvjL1qVU6QYcs"
       );
