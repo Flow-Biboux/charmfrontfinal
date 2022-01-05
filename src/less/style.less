@@ -494,6 +494,29 @@
                         height: 100%;
                     }
                 }
+
+                .complete {
+                    background-color: #90141f;
+                }
+
+                .private-sale-bar {
+                    &::after {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        bottom: 0;
+                        width: 50%;
+                        height: 4px;
+                        margin-bottom: 10px;
+                        background-color: #90141f;
+                        .flex(row,center,center);
+
+                        @media @mobile {
+                            height: 6px;
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
             }
         }
 
